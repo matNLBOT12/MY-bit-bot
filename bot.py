@@ -28,7 +28,7 @@ from discord.ext import commands, tasks
 import aiohttp
 import youtube_dl
 
-with open("./config/prefixes.json") as f:
+with open("prefixes.json") as f:
     prefixes = json.load(f)
     default_prefix = "-"
 
@@ -44,14 +44,14 @@ bot.remove_command('help')
 @commands.has_permissions(administrator=True)
 async def setprefix(ctx, new_prefix):
     prefixes[ctx.message.guild.id] = new_prefix
-    with open("./config/prefixes.json", "w") as f:
+    with open("prefixes.json", "w") as f:
         json.dump(prefixes, f, indent=4)
 
     embed = discord.Embed(color=0x4a3d9a, timestamp=ctx.message.created_at)
     embed.set_author(name=f"{bot.user.name}", icon_url=bot.user.avatar_url)
     embed.add_field(name="Success", value=f"Successfully changed prefix changed to `{new_prefix}`")
     embed.set_thumbnail(url=bot.user.avatar_url)
-    embed.set_footer(text="NewHorizon Development | https://newhorizon-development.netlify.app", icon_url=bot.user.avatar_url)
+    embed.set_footer(text="MATBOT DEVELOPER", icon_url=bot.user.avatar_url)
     await ctx.message.delete()
     await ctx.send(embed=embed, delete_after=4)
 
